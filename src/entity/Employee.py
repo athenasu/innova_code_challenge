@@ -3,7 +3,8 @@ Manager class that inherits from EmployeeBase
 '''
 
 from typing import Optional
-from pydantic import BaseModel, ValidationError, validator
+from pydantic import BaseModel, validator
+import re
 
 
 class EmployeeBase(BaseModel):
@@ -13,14 +14,13 @@ class EmployeeBase(BaseModel):
     manager: Optional[int] = None
     salary: int
 
-    # try with first name & regular expressions
-    @validator("employee_id")
-    def id_must_be_integer(cls, v):
-        try:
-            isinstance(v, int)
+    # Validate first_name attribute
+    @validator("first_name")
+    def first_name_must_be_alphabet(cls, v):
+        first_name_format = re.compile("^[A-Z][-a-zA-Z]+$")
+        if first_name_format.match(v):
             return v
-        except ValidationError:
-            raise ValueError("Id must be integer")
+        raise TypeError('TypeError: First name must only include alphabets from A-Z')
 
 
 class Employee(EmployeeBase):

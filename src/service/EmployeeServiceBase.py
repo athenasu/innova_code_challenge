@@ -1,13 +1,13 @@
 """
-EmployeeService class
-Imports lru_cache, EmployeeFactory, Manager, and EmployeeBase
+EmployeeSerivce class
+Uses... imports
 Benchmark EmployeeServiceMock for non-recursive method
 """
 from functools import lru_cache
 from util.FileUtil import FileUtil
+from src.entity.Manager import Manager
 from src.entity.EmployeeFactory import EmployeeFactory
-from src.entity.Employee import Manager, EmployeeBase
-from src.entity.EmployeeError import EmployeeIOError, EmployeeTypeError
+from src.entity.EmployeeBase import EmployeeBase
 
 
 class EmployeeService:  # description of class
@@ -33,15 +33,7 @@ class EmployeeService:  # description of class
         next_employee_obj = self.lookup_employee_dict[current_employee_obj.manager]
         return self.set_employee_level(next_employee_obj.employee_id, employee_level + 1)
 
-    def set_employee_hierarchy(self, employees: list[dict]) -> None:
-        """
-        Sets hierarcy_dict to group manager_ids with team_member ids
-        Creates Manager and Employee objects
-        Calls set_employee_level() and sets levels for all employees
-
-        :param employees: list[dict]
-        :return: None
-        """
+    def set_employee_hierarchy(self, employees: list[dict]):
         # Set hierarchy_dict
         for employee in employees:
             self.hierarchy_dict[employee['manager']] = employee['id']
@@ -58,50 +50,26 @@ class EmployeeService:  # description of class
                 # Set team members for manager
                 employee.team_members = [emp for emp in self.lookup_employee_dict.values() if emp.manager == employee_id]
 
-    def print_hierarchy(self) -> None:
-        """
-        Get managers
-        Sort manager levels
-        Print manager and their team members
-
-        :return: None
-        """
+    def print_hierarchy(self):
         # Get Managers
         managers = [employee for employee in self.lookup_employee_dict.values() if isinstance(employee, Manager)]
         # Sort manager.levels from 0
         managers.sort(key=lambda x: x.level, reverse=False)
         # Print manager team members
         for manager in managers:
-            print('{} {} is the manager of:'.format(manager.level * '\t', manager.first_name))
+            print(manager.level * '\t' + f'{manager.first_name} is the manager of:')
             # Sort team_members by first_name
             manager.team_members.sort(key=lambda x: x.first_name, reverse=False)
             for team_member in manager.team_members:
-                print('{} {}'.format(team_member.level * '\t', team_member.first_name))
+                print(team_member.level * '\t' + f'{team_member.first_name}')
 
-    def set_total_salary(self, employees: dict[int, EmployeeBase]) -> int:
-        """
-        Return sum of employee salary
+    # Return sum of salary
+    def set_total_salary(self, employee_salary: dict[int, EmployeeBase]) -> int:
+        return sum(employee.salary for employee in employee_salary.values())
 
-        :param employees: dict[int, EmployeeBase]
-        :return: int
-        """
-        return sum(employee.salary for employee in employees.values())
-
-    def execute(self, json_filename: str) -> None:  # handle all error handling (top level function)
-        """
-        Calls functions in EmployeeService to print office hierarchy
-
-        :param json_filename: str
-        :return: None
-        """
-        try:
-            employees = FileUtil.load_employees_from_json(json_filename=json_filename)
-            self.set_employee_hierarchy(employees)
-            self.print_hierarchy()
-            print(f"Total salary: {format(self.set_total_salary(self.lookup_employee_dict), ',')}")
-        except EmployeeIOError as e:
-            print(f'[App {__name__}] IOError: {e}')
-        except EmployeeTypeError as e:
-            print(f'[App {__name__}] TypeError: {e}')
-        except Exception as e:
-            print(f'[App {__name__}] Unknown exception: {e}')
+    def execute(self, json_filename: str):  # handle all error handling (top level function)
+        #
+        employees = FileUtil.load_employees_from_json(json_filename=json_filename)
+        self.set_employee_hierarchy(employees)
+        self.print_hierarchy()
+        print(f"Total salary: {format(self.set_total_salary(self.lookup_employee_dict), ',')}")
