@@ -1,5 +1,29 @@
 [
     {
+    "id": 203,
+    "first_name": "AndyBBB",
+    "manager": 201,
+    "salary": 90000
+    },
+    {
+    "id": 204,
+    "first_name": "JasonBBB",
+    "manager": 201,
+    "salary": 80000
+    },
+    {
+    "id": 205,
+    "first_name": "DanBBB",
+    "manager": 201,
+    "salary": 70000
+    },
+    {
+    "id": 206,
+    "first_name": "RickBBB",
+    "manager": 201,
+    "salary": 60000
+    },
+    {
     "id": 1,
     "first_name": "Dave",
     "manager": 2,
@@ -75,6 +99,12 @@
     "id": 109,
     "first_name": "SuzanneAAA",
     "manager": 101,
+    "salary": 80000
+    },
+    {
+    "id": 201,
+    "first_name": "DaveBBB",
+    "manager": 109,
     "salary": 80000
     }
 ]
