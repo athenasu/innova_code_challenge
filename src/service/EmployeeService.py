@@ -85,6 +85,8 @@ class EmployeeService:  # description of class
         :param employees: dict[int, EmployeeBase]
         :return: int
         """
+        if not employees:
+            return 0
         return sum(employee.salary for employee in employees.values())
 
     def execute(self, json_filename: str) -> None:  # handle all error handling (top level function)
