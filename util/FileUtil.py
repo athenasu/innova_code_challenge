@@ -1,5 +1,5 @@
 """
-FileUtil class: loads json files from resource folder and returns an array of objects
+FileUtil class: loads files and returns an array of objects
 """
 
 import json
@@ -17,7 +17,7 @@ class FileUtil:
         :return: list[dict]
         """
         try:
-            with open(f'../resources/{json_filename}', 'r') as f:
+            with open(f'../resources/{json_filename}', 'r') as f:  # try change to json path --> create new class
                 json_list = json.load(f)
                 records = []
                 for obj in json_list:
