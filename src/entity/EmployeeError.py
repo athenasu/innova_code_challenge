@@ -1,5 +1,5 @@
 """
-Can send error metrics to AWS CloudWatch
+Custom Errors and can send error metrics to AWS CloudWatch
 """
 
 
