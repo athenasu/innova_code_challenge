@@ -2,7 +2,7 @@
 EmployeeService class
 Imports lru_cache, EmployeeFactory, Manager, and EmployeeBase
 """
-from functools import lru_cache, cache
+from functools import lru_cache
 from util.FileUtil import FileUtil
 from src.entity.EmployeeFactory import EmployeeFactory
 from src.entity.Employee import Manager, EmployeeBase
@@ -73,24 +73,23 @@ class EmployeeService:  # description of class
         managers.sort(key=lambda mgr: mgr.level, reverse=False)
         # Print manager team members
         for manager in managers:
-            print('{} {} is the manager of:'.format(manager.level * '\t', manager.first_name))
+            print('{}{} is the manager of:'.format(manager.level * '\t', manager.first_name))
             # Sort team_members by first_name
             manager.team_members.sort(key=lambda emp: emp.first_name, reverse=False)
             for team_member in manager.team_members:
-                print('{} {}'.format(team_member.level * '\t', team_member.first_name))
+                print('{}{}'.format(team_member.level * '\t', team_member.first_name))
 
     def get_total_salary(self) -> int:
         """
         Return sum of employee salary
 
-        :param employees: dict[int, EmployeeBase]
         :return: int
         """
         if not self.lookup_employee_dict:
             return 0
         return sum(employee.salary for employee in self.lookup_employee_dict.values())
 
-    def execute(self, json_filename: str) -> None:
+    def execute(self, file_path: str) -> bool:
         """
         Controls the main flow of EmployeeService:
         Gets employee dictionary from FileUtil.load_employees_from_json
@@ -98,17 +97,21 @@ class EmployeeService:  # description of class
         Prints office hierarchy
         Prints total salary
 
-        :param json_filename: str
-        :return: None
+        :param file_path: str
+        :return: bool
         """
         try:
-            employees = FileUtil.load_employees_from_json(json_filename=json_filename)
+            employees = FileUtil.load_employees_from_json(file_path=file_path)
             self.set_employee_hierarchy(employees)
             self.print_hierarchy()
             print(f"Total salary: {format(self.get_total_salary(), ',')}")
+
+            return True
         except EmployeeIOError as e:
             print(f'[App {__name__}] IOError: {e}')
         except EmployeeTypeError as e:
             print(f'[App {__name__}] TypeError: {e}')
         except Exception as e:
             print(f'[App {__name__}] Unknown exception: {e}')
+
+        return False

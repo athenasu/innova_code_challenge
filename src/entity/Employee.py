@@ -7,8 +7,6 @@ from typing import Optional
 from pydantic import BaseModel, validator
 import re
 
-RE_FIRST_NAME_FORMAT = re.compile("^[A-Z][-a-zA-Z]+$")
-
 
 class EmployeeBase(BaseModel):
     """
@@ -19,10 +17,10 @@ class EmployeeBase(BaseModel):
     manager: Optional[int] = None
     salary: int
 
-    # Validate first_name attribute compared to global regex variable
+    # Validate first_name attribute with python .isalpha() method
     @validator("first_name")
     def first_name_must_be_alphabet(cls, v):
-        if RE_FIRST_NAME_FORMAT.match(v):
+        if v.isalpha():
             return v
         raise TypeError('TypeError: First name must only include alphabets from A-Z')
 
@@ -30,14 +28,14 @@ class EmployeeBase(BaseModel):
 class Employee(EmployeeBase):
     """
     Employee class implements EmployeeBase
-    level: keeps track of each employee's level in the company, will also be used to show indentation
     """
+    # keeps track of each employee's level in the company, will also be used to show indentation
     level: int = 0
 
 
 class Manager(Employee):
     """
     Manager class implements Employee class
-    team_members: stores the list of their
     """
+    # stores the list of Manager's team members
     team_members: list[EmployeeBase] = []

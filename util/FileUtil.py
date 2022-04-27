@@ -9,15 +9,15 @@ from src.entity.EmployeeError import EmployeeIOError
 class FileUtil:
 
     @staticmethod
-    def load_employees_from_json(json_filename: str) -> list[dict]:
+    def load_employees_from_json(file_path: str) -> list[dict]:
         """
         Load json file and appends every record into an array
 
-        :param json_filename:str
+        :param file_path:str
         :return: list[dict]
         """
         try:
-            with open(f'../resources/{json_filename}', 'r') as f:  # try change to json path --> create new class
+            with open(file_path) as f:  # try change to json path --> create new class
                 json_list = json.load(f)
                 records = []
                 for obj in json_list:

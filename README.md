@@ -23,10 +23,9 @@ To run: `python3 ./src/main.py`
   - error_pydantic_first_name
 
 # EXAMPLE OUTPUT
+![](docs/hierarchy_example_output.png)
 
-# RUN PYTEST
+# RUN PYTEST & CODE COVERAGE
 To run: `pytest ./tests`
-
-
-# BENCHMARK TEST
-- pytest benchmark module 
+![](docs/pytest_tests.png)
+![](docs/pytest_code_coverage.png)
