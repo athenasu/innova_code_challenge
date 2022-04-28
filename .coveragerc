@@ -3,4 +3,4 @@ branch = True
 omit =
     */build/*
     tests/*
-    src/main.py
+    */main.py

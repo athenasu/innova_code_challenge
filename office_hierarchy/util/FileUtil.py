@@ -3,7 +3,7 @@ FileUtil class: loads files and returns an array of objects
 """
 
 import json
-from src.entity.EmployeeError import EmployeeIOError
+from office_hierarchy.entity.EmployeeError import EmployeeIOError
 
 
 class FileUtil:
@@ -17,7 +17,7 @@ class FileUtil:
         :return: list[dict]
         """
         try:
-            with open(file_path) as f:  # try change to json path --> create new class
+            with open(file_path) as f:
                 json_list = json.load(f)
                 records = []
                 for obj in json_list:
