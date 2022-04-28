@@ -1,12 +1,15 @@
-from src.service.EmployeeService import EmployeeService
-from src.entity.Employee import Manager, Employee
+"""
+Test code and
+"""
+from office_hierarchy.entity.Employee import Manager, Employee
+from office_hierarchy.service.PrintEmployeeService import PrintEmployeeService
 
 
 def test_execute():
     """
     Test execute() method in EmployeeService
     """
-    service = EmployeeService()
+    service = PrintEmployeeService()
     result = service.execute('./resources/employees1.json')
     assert result
 
@@ -15,26 +18,17 @@ def test_number_of_employees():
     """
     Test number of employees field in EmployeeService
     """
-    service = EmployeeService()
+    service = PrintEmployeeService()
     service.execute('./resources/employees2.json')
     number_of_employees = len(service.lookup_employee_dict.keys())
     assert number_of_employees == 5
-
-
-def test_total_salary():
-    """
-    Test get_total_salary() method in EmployeeService
-    """
-    service = EmployeeService()
-    service.execute('./resources/employees3.json')
-    assert service.get_total_salary() == 1070000
 
 
 def test_employee_level():
     """
     Test employee level in EmployeeService
     """
-    service = EmployeeService()
+    service = PrintEmployeeService()
     service.execute('./resources/employees4.json')
     jeff = service.lookup_employee_dict[2]
     dave = service.lookup_employee_dict[1]
@@ -49,7 +43,7 @@ def test_employee_type():
     """
     Test employee type with lookup_employee_dict field in EmployeeService
     """
-    service = EmployeeService()
+    service = PrintEmployeeService()
     service.execute('./resources/employees5.json')
 
     jeff = service.lookup_employee_dict[2]
