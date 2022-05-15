@@ -1,0 +1,110 @@
+[
+    {
+    "id": 203,
+    "first_name": "AndyBBB",
+    "manager": 201,
+    "salary": 90000
+    },
+    {
+    "id": 204,
+    "first_name": "JasonBBB",
+    "manager": 201,
+    "salary": 80000
+    },
+    {
+    "id": 205,
+    "first_name": "DanBBB",
+    "manager": 201,
+    "salary": 70000
+    },
+    {
+    "id": 206,
+    "first_name": "RickBBB",
+    "manager": 201,
+    "salary": 60000
+    },
+    {
+    "id": 1,
+    "first_name": "Dave",
+    "manager": 2,
+    "salary": 100000
+    },
+    {
+    "id": 101,
+    "first_name": "DaveAAA",
+    "manager": 2,
+    "salary": 100000
+    },
+    {
+    "id": 2,
+    "first_name": "Jeff",
+    "manager": null,
+    "salary": 110000
+    },
+    {
+    "id": 3,
+    "first_name": "Andy",
+    "manager": 1,
+    "salary": 90000
+    },
+    {
+    "id": 4,
+    "first_name": "Jason",
+    "manager": 1,
+    "salary": 80000
+    },
+    {
+    "id": 5,
+    "first_name": "Dan",
+    "manager": 1,
+    "salary": 70000
+    },
+    {
+    "id": 6,
+    "first_name": "Rick",
+    "manager": 1,
+    "salary": 60000
+    },
+    {
+    "id": 9,
+    "first_name": "Suzanne",
+    "manager": 1,
+    "salary": 80000
+    },
+    {
+    "id": 103,
+    "first_name": "AndyAAA",
+    "manager": 101,
+    "salary": 90000
+    },
+    {
+    "id": 104,
+    "first_name": "JasonAAA",
+    "manager": 101,
+    "salary": 80000
+    },
+    {
+    "id": 105,
+    "first_name": "DanAAA",
+    "manager": 101,
+    "salary": 70000
+    },
+    {
+    "id": 106,
+    "first_name": "RickAAA",
+    "manager": 101,
+    "salary": 60000
+    },
+    {
+    "id": 109,
+    "first_name": "SuzanneAAA",
+    "manager": 101,
+    "salary": 80000
+    },
+    {
+    "id": 201,
+    "first_name": "DaveBBB",
+    "manager": 109,
+    "salary": 80000
+    }
+]

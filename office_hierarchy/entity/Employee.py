@@ -29,8 +29,6 @@ class Employee(EmployeeBase):
     """
     Employee class implements EmployeeBase
     """
-    # keeps track of each employee's level in the company, will also be used to show indentation
-    level: int = 0
 
 
 class Manager(Employee):
