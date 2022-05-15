@@ -1,5 +1,6 @@
 """
 FileUtil class: loads files and returns an array of objects
+Can add other file reader methods here if needed
 """
 
 import json
@@ -15,6 +16,7 @@ class FileUtil:
 
         :param file_path:str
         :return: list[dict]
+        :raises: EmployeeIOError(FileNotFound), EmployeeIOError(JSONDecoderError)
         """
         try:
             with open(file_path) as f:
@@ -22,18 +24,7 @@ class FileUtil:
                 records = []
                 for obj in json_list:
                     records.append(obj)
-            if len(records) == 0:
-                raise TypeError('File cannot be empty')
-            else:
-                return records
-        except FileNotFoundError as e:
-            raise EmployeeIOError(f'[Util {__name__}] File not found: {e}')
+            return records
         except json.JSONDecodeError as e:
             raise EmployeeIOError(f'[Util {__name__}] Wrong json format: {e}')
-        except TypeError as e:
-            raise EmployeeIOError(f'[Util {__name__}] File cannot be empty: {e}')
-        except Exception as e:
-            raise EmployeeIOError(f'[Util {__name__}] Unknown exception: {e}')
 
-    def load_employee_from_xml(self):
-        pass

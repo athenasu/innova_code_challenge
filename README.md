@@ -18,7 +18,7 @@
 ![](docs/class_diagram.png)
 
 
-# PRINT OFFICE HIERARCHY
+# PRINT OFFICE HIERARCHY TEST FILES
 To run: `python3 ./office_hierarchy/main.py`
 - Enter filename:
   - employees1
@@ -26,8 +26,7 @@ To run: `python3 ./office_hierarchy/main.py`
   - employees3
   - employees4
   - employees5
-  - error_bad_json_format
-  - error_pydantic_first_name
+  - two_top_managers
 
 
 # EXAMPLE OUTPUT
